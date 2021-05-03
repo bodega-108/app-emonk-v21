@@ -1,0 +1,22 @@
+@import "../../../pages/admin.component.scss";
+
+#sidebar-wrapper{
+
+    background: $admin-primary-color;
+}
+
+.sidebar-heading a{
+    text-decoration: none;
+    color: white;
+    transition: all 0.2s;
+}
+.sidebar-heading a:hover{
+    font-weight: bold;
+}
+.bg-emonk{
+    background-color: #4a6d90!important;
+}
+.list-group-item-action{
+    color: white;
+}
+

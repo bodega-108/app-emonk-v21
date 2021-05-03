@@ -1,0 +1,126 @@
+<div class="container">
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-6">
+            <form [formGroup]="form" (ngSubmit)="generar($event)">
+                <div class="mb-3">
+                    <input type="text" class="form-control" id="exampleFormControlInput1" formControlName="nombre" placeholder="Nombre">
+                    <div *ngIf="form.get('nombre').errors && form.get('nombre').touched">
+                        <small>Debe ingresar un nombre <span><i class="fas fa-times-circle"></i></span></small>
+                      </div>
+                </div>
+                <div class="mb-3">
+                    <div class="form-group">
+                        <select class="form-control" formControlName="categoria" id="exampleFormControlSelect1">
+                            <option value="" disabled>categoria</option>
+                            <option [value]="item.id" *ngFor="let item of categoriasForm">{{item.nombre}}</option>
+                           
+                        </select>
+                        <div *ngIf="form.get('categoria').errors && form.get('categoria').touched">
+                            <small>Debe seleccionar una categoria <span><i class="fas fa-times-circle"></i></span></small>
+                        </div>
+                      </div>
+                </div>
+                <div class="mb-3">
+                    
+                    <input type="text" class="form-control" id="exampleFormControlInput1" formControlName="precio" placeholder="Precio">
+                    <div *ngIf="form.get('precio').errors && form.get('precio').touched">
+                      <small>Debe ingresar un precio <span><i class="fas fa-times-circle"></i></span></small>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <div class="form-group">
+                        <select class="form-control" formControlName="cliente" id="exampleFormControlSelect1">
+                            <option value="" disabled>cliente</option>
+                            <option [value]="item.id" *ngFor="let item of clientesForm">{{item.nombre}}</option>
+                        </select>
+                        <div *ngIf="form.get('cliente').errors && form.get('cliente').touched">
+                            <small>Debe seleccionar un cliente <span><i class="fas fa-times-circle"></i></span></small>
+                        </div>
+                      </div>
+                </div>
+                <div class="mb-3">
+                    <div class="form-group">
+                        <select class="form-control" formControlName="kam" id="exampleFormControlSelect1">
+                            <option value="" disabled>kam</option>
+                            <option [value]="item.id" *ngFor="let item of kamsForm">{{item.nombre}}</option>
+                        </select>
+                        <div *ngIf="form.get('cliente').errors && form.get('cliente').touched">
+                            <small>Debe seleccionar un cliente <span><i class="fas fa-times-circle"></i></span></small>
+                        </div>
+                      </div>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" formControlName="tipo" type="radio" name="tipo" id="flexRadioDefault1" value="simple" >
+                    <label class="form-check-label" for="flexRadioDefault1">
+                      Simple
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" formControlName="tipo" type="radio" name="tipo" id="flexRadioDefault2" value="configurable">
+                    <label class="form-check-label" for="flexRadioDefault2">
+                      Configurable
+                    </label>
+                  </div>
+                  <div *ngIf="configurable">
+                    <input  class="form-control mt-3" formControlName="variantes" type="number" placeholder="cantidad de variantes" >
+                  </div>
+                  <button type="submit" class="btn btn-dark mt-3">generar</button>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="container mt-4" *ngIf="tipoProducto">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Resultado</h5>
+                </div>
+              <div class="card-body">
+                  <p><strong>Sku: </strong>{{skuSimple}}</p>
+                  <button class="btn btn-dark mr-2" (click)="save()">Guardar</button>
+                  <button class="btn btn-danger " (click)="cancelar()">Cancelar</button>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container" *ngIf="tabla">
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Sku</th>
+            <th scope="col">nombre</th>
+            <th scope="col">Handle</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor=" let item of registroNuevo">
+            <td>{{item.sku}}</td>
+            <td>{{item.nombre}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <button class="btn btn-dark" (click)="save()">Guardar</button>
+      <button class="btn btn-danger ml-4" (click)="cancelar()">Cancelar</button>
+</div>
+<div class="container loading d-flex align-items-center" *ngIf="loading">
+    <div class="container">
+      <div class="text-center">
+        <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+      </div>
+    </div>
+</div>
+<div class="container mt-5" *ngIf="resultadoRegistroBol" >
+    <div class="row d-flex justify-content-center">
+       <div class="col-md-4">
+         <div class="card">
+           <div class="card-body text-center">
+             <h4>{{resultadoRegistro}} <span><i class="fas fa-check-circle"></i></span> </h4>
+           </div>
+         </div>
+       </div>
+    </div>
+</div>

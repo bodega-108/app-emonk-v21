@@ -1,0 +1,12 @@
+<div class=" border-right" id="sidebar-wrapper">
+    <div class="sidebar-heading">
+        <a  [routerLink]="['/']" routerLinkActive="router-link-active" > Emonk</a>
+       
+    </div>
+    <div class="list-group list-group-flush">
+      <a href="#" class="list-group-item list-group-item-action bg-emonk" [routerLink]="['/admin']" routerLinkActive="router-link-active" ><span><i class="fas fa-columns"></i></span>  Dashboard</a>
+      <a href="#" class="list-group-item list-group-item-action bg-emonk" [routerLink]="['/admin/generador']" routerLinkActive="router-link-active"><span><i class="fas fa-barcode"></i></span> Generador</a>
+      <a href="#" class="list-group-item list-group-item-action bg-emonk" [routerLink]="['/admin/users']" routerLinkActive="router-link-active"><span><i class="fas fa-users"></i></span> Users</a>
+
+    </div>
+  </div>

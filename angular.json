@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "app-emonk-v21"
+    }
+  },
+  "defaultProject": "app-emonk-v21",
+  "cli": {
+    "analytics": "4f00caea-6d95-4062-943a-f2e4ceac7ff9"
+  }
 }
