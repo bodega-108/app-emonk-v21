@@ -39,91 +39,128 @@ export class ProcesadorService {
 
     if(tipo == "simple" ){
 
-        switch(categoria){
-        case 1:
-          cantidad++;
+      cantidad++;
+      for(let i = 1; i <=variantes; i++){
           
-        for(let i = 1; i <=variantes; i++){
-          
-          contadorVariante++;
-          
-          if(cantidad >=10){
-            preDigito = "0000"
-          }
-          if(contadorVariante > 10){
-            preVariante = "0";
-          }
-          //newSku = `9-${preDigito}${cantidad}-${preVariante}${[i]}`;
+        contadorVariante++;
+        
+        if(cantidad >=10){
+          preDigito = "0000"
+        }
+        if(contadorVariante > 10){
+          preVariante = "0";
+        }
+        //newSku = `9-${preDigito}${cantidad}-${preVariante}${[i]}`;
 
-            newSku = `${identificador}-${preDigito}${cantidad}-${preVariante}${[i]}`;
-            //console.log("El nuevo sku es " + testNewSku);
-            newSkuConfig.push(newSku);      
-        } 
+          newSku = `${identificador}-${preDigito}${cantidad}-${preVariante}${[i]}`;
+          //console.log("El nuevo sku es " + testNewSku);
+          newSkuConfig.push(newSku);      
+      }
+      return newSkuConfig; 
+
+      //   switch(categoria){
+      //   case 1:
+      //     cantidad++;
+
+      //   for(let i = 1; i <=variantes; i++){
+          
+      //     contadorVariante++;
+          
+      //     if(cantidad >=10){
+      //       preDigito = "0000"
+      //     }
+      //     if(contadorVariante > 10){
+      //       preVariante = "0";
+      //     }
+      //     //newSku = `9-${preDigito}${cantidad}-${preVariante}${[i]}`;
+
+      //       newSku = `${identificador}-${preDigito}${cantidad}-${preVariante}${[i]}`;
+      //       //console.log("El nuevo sku es " + testNewSku);
+      //       newSkuConfig.push(newSku);      
+      //   } 
      
-                return newSkuConfig; 
+      //           return newSkuConfig; 
              
                 
-            break;
-        case 2:
-          cantidad++;
-          for(let i = 1; i <=variantes; i++){
+      //       break;
+      //   case 2:
+      //     cantidad++;
+      //     for(let i = 1; i <=variantes; i++){
           
-            contadorVariante++;
+      //       contadorVariante++;
             
-            if(cantidad >=10){
-              preDigito = "0000"
-            }
-            if(contadorVariante > 10){
-              preVariante = "0";
-            }
-            newSku = `12-${preDigito}${cantidad}-${preVariante}${[i]}`;
+      //       if(cantidad >=10){
+      //         preDigito = "0000"
+      //       }
+      //       if(contadorVariante > 10){
+      //         preVariante = "0";
+      //       }
+      //       newSku = `12-${preDigito}${cantidad}-${preVariante}${[i]}`;
             
-            newSkuConfig.push(newSku);
-          }        
-                return newSkuConfig;   
-          break;
-      }
+      //       newSkuConfig.push(newSku);
+      //     }        
+      //           return newSkuConfig;   
+      //     break;
+      // }
     }
 
     if(tipo == "configurable"){
-      switch(categoria){
-        case 1:
-          cantidad++;
-        for(let i = 0; i <=variantes; i++){
+
+      cantidad++;
+      for(let i = 0; i <=variantes; i++){
           
-          contadorVariante++;
+        contadorVariante++;
+        
+        if(cantidad >=10){
+          preDigito = "0000"
+        }
+        if(contadorVariante > 10){
+          preVariante = "0";
+        }
+        newSku = `${identificador}-${preDigito}${cantidad}-${preVariante}${[i]}`;
+        
+        newSkuConfig.push(newSku);
+      }        
+            return newSkuConfig;   
+
+      // switch(categoria){
+      //   case 1:
+      //     cantidad++;
+      //   for(let i = 0; i <=variantes; i++){
           
-          if(cantidad >=10){
-            preDigito = "0000"
-          }
-          if(contadorVariante > 10){
-            preVariante = "0";
-          }
-          newSku = `9-${preDigito}${cantidad}-${preVariante}${[i]}`;
+      //     contadorVariante++;
           
-          newSkuConfig.push(newSku);
-        }        
-              return newSkuConfig;   
-            break;
-        case 2:
-          cantidad++;
-          for(let i = 0; i <=variantes; i++){
+      //     if(cantidad >=10){
+      //       preDigito = "0000"
+      //     }
+      //     if(contadorVariante > 10){
+      //       preVariante = "0";
+      //     }
+      //     newSku = `9-${preDigito}${cantidad}-${preVariante}${[i]}`;
           
-            contadorVariante++;
+      //     newSkuConfig.push(newSku);
+      //   }        
+      //         return newSkuConfig;   
+      //       break;
+      //   case 2:
+      //     cantidad++;
+      //     for(let i = 0; i <=variantes; i++){
+          
+      //       contadorVariante++;
             
-            if(cantidad >=10){
-              preDigito = "0000"
-            }
-            if(contadorVariante > 10){
-              preVariante = "0";
-            }
-            newSku = `12-${preDigito}${cantidad}-${preVariante}${[i]}`;
+      //       if(cantidad >=10){
+      //         preDigito = "0000"
+      //       }
+      //       if(contadorVariante > 10){
+      //         preVariante = "0";
+      //       }
+      //       newSku = `12-${preDigito}${cantidad}-${preVariante}${[i]}`;
             
-            newSkuConfig.push(newSku);
-          }        
-                return newSkuConfig;   
-          break;
-      }
+      //       newSkuConfig.push(newSku);
+      //     }        
+      //           return newSkuConfig;   
+      //     break;
+      // }
     }
   }
 

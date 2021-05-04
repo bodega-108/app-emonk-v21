@@ -21,6 +21,7 @@ export class GeneradorComponent implements OnInit {
   public skuSimple : String;
   public resultadoRegistro:String = 'Procesando'; 
   public resultadoRegistroBol:Boolean = false;
+  public formCreation:Boolean;
 
   //FORMULARIO
   public categoriasForm:any;
@@ -38,11 +39,10 @@ export class GeneradorComponent implements OnInit {
     this.getClientes();
     this.getKams();
     this.formulario();
-   
   }
 
   formulario(){
-    console.log('iniciando');
+    this.formCreation = true;
 
     this.form = new FormGroup({
       nombre: new FormControl('',[Validators.required]),
@@ -71,15 +71,21 @@ export class GeneradorComponent implements OnInit {
   solicitudInfo(idCategoria:number, tipo, variantes,identificador){
 
     this.EmonkService.getSkus(idCategoria).subscribe(data => {
-      // console.log(data);
+       console.log(data);
       let numero= [];
-      for(let i = 0; i < data.productos.length; i++) {
+      
+      if(!data.ok){
+        numero.push(0);
+      }else{
+        for(let i = 0; i < data.productos.length; i++) {
         
-        //console.log(data.productos[i].sku);
-        //console.log(data.productos[i].sku.substring(6,9));
-         //console.log(Number(data['productos'][i].sku.substring(6,9)));
-         numero.push(parseFloat(data.productos[i].sku.substring(6,9)));
+          //console.log(data.productos[i].sku);
+          //console.log(data.productos[i].sku.substring(6,9));
+           //console.log(Number(data['productos'][i].sku.substring(6,9)));
+           numero.push(parseFloat(data.productos[i].sku.substring(6,9)));
+        }
       }
+     
 
       // console.log(numero);
       
@@ -178,7 +184,8 @@ export class GeneradorComponent implements OnInit {
           this.resultadoRegistroBol = true;
           
           setTimeout(() => {
-            this.resultadoRegistroBol = false;  
+            this.resultadoRegistroBol = false;
+            this.formCreation = true; 
           },2000);
   
         },3000);
@@ -205,6 +212,7 @@ export class GeneradorComponent implements OnInit {
         console.log(this.loading);
         this.tipoProducto = false;
         this.tabla = false;
+        this.formCreation= true;
       
     },1000);
   }
@@ -227,9 +235,11 @@ export class GeneradorComponent implements OnInit {
     });
   }
   getIdentificador(){
-    
+   
     if(this.form.valid){
+
       this.loading = true;
+      this.formCreation= false;
       const informacion = this.form.value;
       const categoria = parseFloat(informacion.categoria);
 
