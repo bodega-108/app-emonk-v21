@@ -15,10 +15,13 @@ export class GeneradorComponent implements OnInit {
   public tabla : Boolean;
   public configurable : boolean;
   public registroNuevo : Array<any> = [];
+  public identificadorCategoria : number;
 
+  //Booleanos
   public skuSimple : String;
   public resultadoRegistro:String = 'Procesando'; 
   public resultadoRegistroBol:Boolean = false;
+
   //FORMULARIO
   public categoriasForm:any;
   public clientesForm:any;
@@ -65,7 +68,7 @@ export class GeneradorComponent implements OnInit {
       let catego = parseFloat(data.categoria);
     });
   }
-  solicitudInfo(idCategoria:number, tipo, variantes){
+  solicitudInfo(idCategoria:number, tipo, variantes,identificador){
 
     this.EmonkService.getSkus(idCategoria).subscribe(data => {
       // console.log(data);
@@ -83,7 +86,7 @@ export class GeneradorComponent implements OnInit {
       let resultado = this.ProcesadorService.ultimo(numero);
       // console.log(resultado);
 
-      let newSku = this.ProcesadorService.nuevo(idCategoria,resultado,tipo,variantes);
+      let newSku = this.ProcesadorService.nuevo(idCategoria,resultado,tipo,variantes,identificador);
 
       // console.log(newSku);
 
@@ -141,8 +144,12 @@ export class GeneradorComponent implements OnInit {
       this.loading = true;
       const informacion = this.form.value;
       const categoria = parseFloat(informacion.categoria);
-      this.solicitudInfo(categoria,informacion.tipo ,informacion.variantes);
-     
+
+      
+      console.log("Estamos llamando " + this.identificadorCategoria);
+
+      this.solicitudInfo(categoria,informacion.tipo ,informacion.variantes,this.identificadorCategoria);
+      
       
     }else{
       console.log("no valido");
@@ -220,9 +227,22 @@ export class GeneradorComponent implements OnInit {
     });
   }
   getIdentificador(){
-    this.EmonkService.getIdentificador(1).subscribe(data =>{
-      console.log("LLAMANDOOOOOO")
-      console.log(data);
-    });
+    
+    if(this.form.valid){
+      this.loading = true;
+      const informacion = this.form.value;
+      const categoria = parseFloat(informacion.categoria);
+
+      this.EmonkService.getIdentificador(categoria).subscribe(data =>{
+        this.identificadorCategoria = data.identificador[0].identificador_ctg;
+
+        this.solicitudInfo(categoria,informacion.tipo ,informacion.variantes,this.identificadorCategoria);
+        
+      });
+    }else{
+      console.log("no valido");
+      this.form.markAllAsTouched();
+    }
+   
   }
 }

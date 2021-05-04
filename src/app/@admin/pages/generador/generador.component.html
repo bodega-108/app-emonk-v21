@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row d-flex justify-content-center">
         <div class="col-md-6">
-            <form [formGroup]="form" (ngSubmit)="generar($event)">
+            <form [formGroup]="form" (ngSubmit)="getIdentificador()">
                 <div class="mb-3">
                     <input type="text" class="form-control" id="exampleFormControlInput1" formControlName="nombre" placeholder="Nombre">
                     <div *ngIf="form.get('nombre').errors && form.get('nombre').touched">
