@@ -18,6 +18,14 @@ const routes: Routes = [{
       path: 'generador',
       loadChildren : () => import('./generador/generador.module').then(m => m.GeneradorModule)
     },
+    {
+      path: 'entidades',
+      loadChildren : () => import('./entidades/entidades.module').then(m => m.EntidadesModule)
+    },
+    {
+      path: 'categoria-form',
+      loadChildren : () => import('./categoria-form/categoria-form.module').then(m => m.CategoriaFormModule)
+    },
   ]
 }];
 

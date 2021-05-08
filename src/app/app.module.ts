@@ -17,9 +17,9 @@ import { PublicModule } from './@public/pages/public.module';
     AdminModule,
     PublicModule,
     AppRoutingModule,
-    ReactiveFormsModule,
+    // ReactiveFormsModule,
+    // FormsModule,
     HttpClientModule,
-    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

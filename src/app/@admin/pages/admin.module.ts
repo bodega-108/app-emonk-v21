@@ -6,6 +6,8 @@ import { AdminComponent } from './admin.component';
 import { HeaderComponent } from '../core/components/header/header.component';
 import { TitleComponent } from '../core/components/title/title.component';
 import { SidebarComponent } from '../core/components/sidebar/sidebar.component';
+import { CategoriaFormComponent } from './categoria-form/categoria-form.component';
+
 
 
 
@@ -14,7 +16,9 @@ import { SidebarComponent } from '../core/components/sidebar/sidebar.component';
     AdminComponent, 
     HeaderComponent,
     TitleComponent,
-    SidebarComponent
+    SidebarComponent,
+    CategoriaFormComponent,
+  
   ],
   imports: [
     CommonModule,

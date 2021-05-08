@@ -55,7 +55,7 @@ export class GeneradorComponent implements OnInit {
     });
 
     this.form.valueChanges.subscribe(data => {
-      console.log(data);
+      // console.log(data);
 
       if(data.tipo === "configurable"){
         this.tipoProducto = false;
@@ -78,7 +78,6 @@ export class GeneradorComponent implements OnInit {
         numero.push(0);
       }else{
         for(let i = 0; i < data.productos.length; i++) {
-        
           //console.log(data.productos[i].sku);
           //console.log(data.productos[i].sku.substring(6,9));
            //console.log(Number(data['productos'][i].sku.substring(6,9)));
