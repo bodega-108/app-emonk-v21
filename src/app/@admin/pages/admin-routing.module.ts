@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, CanActivate } from '@angular/router';
+import { VigilanteDobleGuard } from 'src/app/vigilante-doble.guard';
 import { AdminComponent } from './admin.component';
 
 const routes: Routes = [{
   path: 'admin',
   component: AdminComponent,
+  canActivate:[VigilanteDobleGuard],
   children: [
     {
       path: '',
@@ -25,6 +27,10 @@ const routes: Routes = [{
     {
       path: 'categoria-form',
       loadChildren : () => import('./categoria-form/categoria-form.module').then(m => m.CategoriaFormModule)
+    },
+    {
+      path: 'login',
+      loadChildren : () => import('./forms/login/login.module').then(m => m.LoginModule)
     },
   ]
 }];

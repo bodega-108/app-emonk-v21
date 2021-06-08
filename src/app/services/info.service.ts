@@ -51,4 +51,10 @@ export class InfoService {
     console.log(id_ctg);
     return this.http.get(this.url + `/api/productos/identificador/${id_ctg}`);
   }
+  postCategoria(categoria):Observable<any>{
+    return this.http.post(this.url + `/api/productos/save-categoria`,categoria,{});
+  }
+  getIdentificadores():Observable<any>{
+    return this.http.get(this.url + `/api/productos/identificadores` );
+  }
 }
